@@ -49,6 +49,22 @@ class Teacher extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->email;
 	}
 
+	/**
+	 * Automatically hash the password when it is set.
+	 *
+	 * @param  string  $password
+	 * @return void
+	 */
+	public function takePassword($password)
+	{
+		$this->attributes['password'] = Hash::make($password);
+	}
+
+	/**
+	 * Fetch the teacher's assignments.
+	 *
+	 * @return HasManyRelationship
+	 */
 	public function assignments()
 	{
 		return $this->hasMany('Assignment');
