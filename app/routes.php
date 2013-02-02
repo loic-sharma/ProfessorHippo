@@ -13,11 +13,18 @@
 
 Route::get('/', 'HomeController@getIndex');
 
-Route::get('login', 'UserController@getLogin');
-Route::post('login', 'UserController@postLogin');
-Route::get('register', 'UserController@getRegister');
-Route::post('register', 'UserController@postRegister');
-Route::get('logout', 'UserController@getLogout');
+Route::group(array('before' => 'guest'), function()
+{
+	Route::get('login', 'UserController@getLogin');
+	Route::post('login', 'UserController@postLogin');
+	Route::get('register', 'UserController@getRegister');
+	Route::post('register', 'UserController@postRegister');
+});
+
+Route::group(array('before' => 'auth'), function()
+{
+	Route::get('logout', 'UserController@getLogout');
+});
 
 Route::controller('api', 'ApiController');
 
