@@ -29,9 +29,20 @@ class ApiController extends Controller {
 	 * @param  int     $id
 	 * @return string
 	 */
-	public function anyAssignment($id)
+	public function getAssignment($id)
 	{
-		$assignment = Assignment::with(array('teacher', 'questions'))->find($id);
+		$assignment = Assignment::with(array('teacher', 'questions'));
+
+		if(is_numeric($id))
+		{
+			$assignment = $assignment->find($id);
+		}
+		
+		else
+		{
+			$assignment = $assignment->where('name', $id)->first();
+		}
+
 
 		if( ! is_null($assignment))
 		{
@@ -42,6 +53,17 @@ class ApiController extends Controller {
 		{
 			return json_encode(array('error' => 'Assignment #'.$id.' does not exist.'));
 		}
+	}
+
+	/**
+	 * Get an assignment's questions.
+	 *
+	 * @param  int  $id
+	 * @return string
+	 */
+	public function getQuestions($id)
+	{
+		return Question::where('assignment_id', $id)->get();
 	}
 
 	/**
