@@ -98,4 +98,16 @@ class UserController extends BaseController {
 		return Redirect::back()->withInput()
 				->withErrors($errors);
 	}
+
+	/**
+	 * Log the user out.
+	 *
+	 * @return RedirectResponse
+	 */
+	public function getLogout()
+	{
+		Auth::logout();
+
+		return Redirect::to('login');
+	}
 }
