@@ -29,7 +29,7 @@ class ApiController extends Controller {
 	 * @param  int     $id
 	 * @return string
 	 */
-	public function getAssignment($id)
+	public function anyAssignment($id)
 	{
 		$assignment = Assignment::with(array('teacher', 'questions'))->find($id);
 

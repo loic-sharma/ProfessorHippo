@@ -23,8 +23,7 @@ Route::group(array('before' => 'guest'), function()
 
 Route::group(array('before' => 'auth'), function()
 {
-	Route::controller('assignment', 'AssignmentController');
-	Route::get('assignments', 'AssignmentController@getIndex');
+	Route::controller('assignments', 'AssignmentsController');
 	Route::get('logout', 'UserController@getLogout');
 });
 
