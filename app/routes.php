@@ -72,7 +72,7 @@ Route::get('api/question/{id}', function($id)
 	}
 });
 
-Route::get('api/hint/{id}', function($hint)
+Route::get('api/hint/{id}', function($id)
 {
 	$hint = Hint::with(array('assignment', 'question'))->find($id);
 
