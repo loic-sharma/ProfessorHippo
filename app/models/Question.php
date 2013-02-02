@@ -18,4 +18,14 @@ class Question extends Eloquent {
 	{
 		return $this->hasMany('Hint');
 	}
+
+	public function takeData($data)
+	{
+		$this->attributes['data'] = json_encode($data);
+	}
+
+	public function giveData($data)
+	{
+		return json_decode($data);
+	}
 }

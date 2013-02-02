@@ -17,7 +17,8 @@ class CreateQuestionsTable extends Migration {
 
 			$table->integer('assignment_id');
 			$table->integer('teacher_id');
-			$table->string('question');
+			$table->string('type');
+			$table->string('text');
 			$table->text('data')->nullable();
 
 			$table->timestamps();

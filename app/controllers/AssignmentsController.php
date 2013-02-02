@@ -4,8 +4,11 @@ class AssignmentsController extends BaseController {
 
 	public function getIndex()
 	{
-		$assignments = Assignment::where('teacher_id', Auth::user()->id)->get();
+		$assignments = Assignment::with('questions')
+						->where('teacher_id', Auth::user()->id)
+						->get();
 
+		$this->addBreadcrumb('Assignments');
 		$this->layout->content = View::make('pages.assignments.home', compact('assignments'));
 	}
 
@@ -13,13 +16,16 @@ class AssignmentsController extends BaseController {
 	{
 		$assignment = new Assignment;
 
+		$this->addBreadcrumb('Assignments', 'assignments');
+		$this->addBreadcrumb('Create Assignment');
+
 		$this->layout->content = View::make('pages.assignments.assignment', compact('assignment'));
 	}
 
 	public function postCreate()
 	{
 		$form = Validator::make(Input::all(), array(
-			'name' => 'required',
+			'name' => array('required', 'unique:assignments'),
 		));
 
 		if($form->passes())
@@ -50,6 +56,9 @@ class AssignmentsController extends BaseController {
 
 		if( ! is_null($assignment))
 		{
+			$this->addBreadcrumb('Assignments', 'assignments');
+			$this->addBreadcrumb('Edit Assignment');
+
 			$this->layout->content = View::make('pages.assignments.assignment', compact('assignment'));
 		}
 
@@ -68,7 +77,7 @@ class AssignmentsController extends BaseController {
 		if( ! is_null($assignment))
 		{
 			$form = Validator::make(Input::all(), array(
-				'name' => 'required',
+				'name' => array('required'),
 			));
 
 			if($form->passes())
@@ -83,7 +92,7 @@ class AssignmentsController extends BaseController {
 
 			else
 			{
-				return Redirect::to('assignments/create')
+				return Redirect::to('assignments/edit/'.$assignment->id)
 						->withInput()
 						->withErrors($form);
 			}

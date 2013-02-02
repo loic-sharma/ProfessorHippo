@@ -14,7 +14,7 @@ class BaseController extends Controller {
 	 *
 	 * @var array
 	 */
-	protected $breadcrumbs = array();
+	public static $breadcrumbs = array();
 
 	/**
 	 * Add a breadcrumb.
@@ -25,7 +25,7 @@ class BaseController extends Controller {
 	 */
 	public function addBreadcrumb($name, $link = null)
 	{
-		$this->breadcrumbs[] = (object) compact('name', 'link');
+		BaseController::$breadcrumbs[] = (object) compact('name', 'link');
 	}
 
 	/**
@@ -38,8 +38,6 @@ class BaseController extends Controller {
 		if ( ! is_null($this->layout))
 		{
 			$this->layout = View::make($this->layout);
-
-			$this->layout->breadcrumbs = $this->breadcrumbs;
 		}
 	}
 }

@@ -33,7 +33,9 @@ class UserController extends BaseController {
 				'password' => Input::get('password'),
 			);
 
-			$teacher = Teacher::fill($credentials)->save();
+			$teacher = new Teacher($credentials);
+
+			$teacher->save();
 
 			Auth::login($teacher);
 

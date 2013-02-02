@@ -24,6 +24,12 @@ Route::group(array('before' => 'guest'), function()
 Route::group(array('before' => 'auth'), function()
 {
 	Route::controller('assignments', 'AssignmentsController');
+	Route::get('assignment/{id}/create', 'QuestionController@getCreate');
+	Route::post('assignment/{id}/create', 'QuestionController@postCreate');
+	Route::get('assignment/{assignment}/edit/{id}', 'QuestionController@getEdit');
+	Route::post('assignment/{assignment}/edit/{id}', 'QuestionController@postEdit');
+	Route::get('assignment/{assignment}/delete/{id}', 'QuestionController@getDelete');
+
 	Route::get('logout', 'UserController@getLogout');
 });
 

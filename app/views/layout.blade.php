@@ -15,15 +15,19 @@
 
 			<ul class="breadcrumb">
 				<li>
-					<a href="http://localhost/cms/ ">Home</a>
-					<span class="dividider">/</span>
+					<a href="{{ URL::to('/') }}">Home</a>
+					<span class="divider">/</span>
 				</li>
 			
 				@foreach($breadcrumbs as $breadcrumb)
 					@if(is_null($breadcrumb->link))
-						<li class="active">{{ $breadcrumb->link }}</span>
+						<li class="active">{{ $breadcrumb->name }}</span>
 					@else
-						<li><a href="{{ URL::to($breadcrumb->link) }}">{{ $breadcrumb->name }}</a></li>
+						<li>
+							<a href="{{ URL::to($breadcrumb->link) }}">{{ $breadcrumb->name }}</a>
+							<span class="divider">/</span>
+						</li>
+						
 					@endif
 				@endforeach	
 			</ul>
