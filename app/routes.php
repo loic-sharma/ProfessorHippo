@@ -13,20 +13,6 @@
 
 Route::get('/', 'HomeController@getIndex');
 
-Route::get('/get', function()
-{
-	return json_encode(array('some' => 'data'));
-});
-
-Route::post('/post', function()
-{
-	$teacher = new Teacher;
-
-	$teacher->save();
-
-	return json_encode(Input::all());
-});
-
 Route::get('api/teacher/{id}', function($id)
 {
 	$teacher = Teacher::with('assignments')->find($id);
@@ -87,7 +73,7 @@ Route::get('api/hint/{id}', function($id)
 	}
 });
 
-Route::post('api/question/{id}/answer', function($id))
+Route::post('api/question/{id}/answer', function($id)
 {
 	$question = Question::find($id);
 
@@ -105,8 +91,8 @@ Route::post('api/question/{id}/answer', function($id))
 		return json_encode(array('message' => 'Saved answer.'));
 	}
 
-	return json_encode(array('error' => 'Question #'.$id. ' does not exist.');
-}
+	return json_encode(array('error' => 'Question #'.$id. ' does not exist.'));
+});
 
 Route::get('api/answer/{id}', function($id)
 {
@@ -121,4 +107,21 @@ Route::get('api/answer/{id}', function($id)
 	{
 		return json_encode(array('error' => 'Answer #'.$id.' does not exist.'));
 	}
+});
+
+/**
+ * Remove these:
+ */
+Route::get('/get', function()
+{
+	return json_encode(array('some' => 'data'));
+});
+
+Route::post('/post', function()
+{
+	$teacher = new Teacher;
+
+	$teacher->save();
+
+	return json_encode(Input::all());
 });
