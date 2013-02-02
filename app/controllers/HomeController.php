@@ -2,8 +2,6 @@
 
 class HomeController extends BaseController {
 
-	public $layout = 'layout';
-
 	/*
 	|--------------------------------------------------------------------------
 	| Default Home Controller

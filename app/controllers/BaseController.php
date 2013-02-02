@@ -3,6 +3,13 @@
 class BaseController extends Controller {
 
 	/**
+	 * The view's layout.
+	 *
+	 * @var string
+	 */
+	public $layout = 'layout';
+
+	/**
 	 * The current page's breadcrumbs.
 	 *
 	 * @var array
