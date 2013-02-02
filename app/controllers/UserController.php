@@ -3,6 +3,54 @@
 class UserController extends BaseController {
 
 	/**
+	 * Display the register form.
+	 *
+	 * @return void
+	 */
+	public function getRegister()
+	{
+		$this->addBreadcrumb('Register');
+
+		$this->layout->content = View::make('pages.user.register');
+	}
+
+	/**
+	 * Attempt to register the user.
+	 *
+	 * @return RedirectReponse
+	 */
+	public function postRegister()
+	{
+		$form = Validator::make(Input::all(), array(
+			'email'    => array('required', 'email', 'unique:teachers'),
+			'password' => array('required', 'confirmed'),
+		));
+
+		if($form->passes())
+		{
+			$credentials = array(
+				'email'    => Input::get('email'),
+				'password' => Input::get('password'),
+			);
+
+			$teacher = Teacher::fill($credentials)->save();
+
+			Auth::login($teacher);
+
+			return Redirect::to('assignments');
+		}
+
+		else
+		{
+			$errors = $form->errors();
+		}
+
+		return Redirect::back()->withInput()
+				->withErrors($errors);
+	}
+
+
+	/**
 	 * Display the login form.
 	 *
 	 * @return void

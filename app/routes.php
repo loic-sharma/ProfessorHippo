@@ -15,6 +15,8 @@ Route::get('/', 'HomeController@getIndex');
 
 Route::get('login', 'UserController@getLogin');
 Route::post('login', 'UserController@postLogin');
+Route::get('register', 'UserController@getRegister');
+Route::post('register', 'UserController@postRegister');
 
 Route::controller('api', 'ApiController');
 
