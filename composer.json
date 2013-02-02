@@ -1,0 +1,17 @@
+{
+	"require": {
+		"laravel/framework": "4.0.*",
+	 	"loic-sharma/profiler": "1.0.*",
+        "jasonlewis/expressive-date": "1.0.*"
+	},
+	"autoload": {
+		"classmap": [
+			"app/commands",
+			"app/controllers",
+			"app/models",
+			"app/database/migrations",
+			"app/tests/TestCase.php"
+		]
+	},
+	"minimum-stability": "dev"
+}
