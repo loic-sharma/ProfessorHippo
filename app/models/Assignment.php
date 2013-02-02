@@ -13,4 +13,9 @@ class Assignment extends Eloquent {
 	{
 		return $this->hasMany('Question');
 	}
+
+	public function giveTimeAgo()
+	{
+		return ExpressiveDate::make($this->attributes['created_at'])->getRelativeDate();
+	}
 }
