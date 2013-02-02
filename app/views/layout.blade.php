@@ -43,15 +43,24 @@
 					<div class="well">
 						<h3>Links</h3>
 
-						<li class="first">
-							<a href="http://localhost/cms/profile">User Control Panel</a>
-						 </li>
-						<li>
-							<a href="http://localhost/cms/index.php/admin">Admin Control Panel</a>
-						</li>
-						<li class="last">
-							<a href="http://localhost/cms/logout">Logout</a>
-						</li>
+						@if(Auth::check())
+							<li class="first">
+								<a href="{{ URL::to('assignment') }}">Assignments</a>
+							 </li>
+							<li>
+								<a href="{{ URL::to('assignment/create') }}">Create Assignment</a>
+							</li>
+							<li>
+								<a href="{{ URL::to('logout') }}">Logout</a>
+							</li>
+						@else
+							<li>
+								<a href="{{ URL::to('login') }}">Login</a>
+							</li>
+							<li>
+								<a href="{{ URL::to('register') }}">Register</a>
+							</li>
+						@endif
 
 						<h3>Information</h3>
 						<p>Load time: {{ $loadtime}} seconds.</p>
