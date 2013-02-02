@@ -72,7 +72,7 @@ Route::get('api/question/{id}', function($id)
 	}
 });
 
-Route::get('api/hint/{id}', function($id)
+Route::get('api/hint/{id}', function($hint)
 {
 	$hint = Hint::with(array('assignment', 'question'))->find($id);
 
@@ -84,5 +84,25 @@ Route::get('api/hint/{id}', function($id)
 	else
 	{
 		return json_encode(array('error' => 'Hint #'.$id.' does not exist.'));
+	}
+});
+
+Route::post('api/question/{id}/answer', function($question))
+{
+	
+}
+
+Route::get('api/answer/{id}', function($id)
+{
+	$answer = Answer::with(array('assignment', 'question'))->find($id);
+
+	if( ! is_null($answer))
+	{
+		return $answer;
+	}
+
+	else
+	{
+		return json_encode(array('error' => 'Answer #'.$id.' does not exist.'));
 	}
 });
