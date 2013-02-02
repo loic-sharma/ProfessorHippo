@@ -87,9 +87,25 @@ Route::get('api/hint/{id}', function($hint)
 	}
 });
 
-Route::post('api/question/{id}/answer', function($question))
+Route::post('api/question/{id}/answer', function($id))
 {
-	
+	$question = Question::find($id);
+
+	if( ! is_null($question))
+	{
+		$answer = new Anwer;
+
+		$answer->assignment_id = $question->assignment_id;
+		$answer->question_id = $question->id;
+		$answer->teacher_id = $question->teacher_id;
+		$answer->data = Input::all();
+
+		$answer->save();
+
+		return json_encode(array('message' => 'Saved answer.'));
+	}
+
+	return json_encode(array('error' => 'Question #'.$id. ' does not exist.');
 }
 
 Route::get('api/answer/{id}', function($id)
