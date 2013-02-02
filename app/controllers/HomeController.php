@@ -2,6 +2,8 @@
 
 class HomeController extends BaseController {
 
+	public $layout = 'layout';
+
 	/*
 	|--------------------------------------------------------------------------
 	| Default Home Controller
@@ -15,9 +17,11 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function getIndex()
 	{
-		return View::make('hello');
+		$this->addBreadcrumb('Home');
+
+		$this->layout->content = View::make('pages.home');
 	}
 
 }

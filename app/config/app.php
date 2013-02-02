@@ -65,7 +65,7 @@ return array(
 	|
 	*/
 
-	'key' => 'YourSecretKey!!!',
+	'key' => 'NEVOzQ)!fWS)7iZR@@b96KzEHzha7Me+',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -109,6 +109,9 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+
+		'Menu\MenuServiceProvider',
+		// 'Profiler\ProfilerServiceProvider',
 
 	),
 
@@ -172,6 +175,7 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 
+		'Menu'            => 'Menu\Facade',
 	),
 
 );

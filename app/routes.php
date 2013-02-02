@@ -11,7 +11,78 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/', 'HomeController@getIndex');
+
+Route::get('/get', function()
 {
-	return View::make('hello');
+	return json_encode(array('some' => 'data'));
+});
+
+Route::post('/post', function()
+{
+	$teacher = new Teacher;
+
+	$teacher->save();
+
+	return json_encode(Input::all());
+});
+
+Route::get('api/teacher/{id}', function($id)
+{
+	$teacher = Teacher::with('assignments')->find($id);
+
+	if( ! is_null($teacher))
+	{
+		return $teacher;
+	}
+
+	else
+	{
+		return json_encode(array('error' => 'Teacher #'.$id.' does not exist.'));
+	}
+});
+
+Route::get('api/assignment/{id}', function($id)
+{
+	$assignment = Assignment::with(array('teacher', 'questions'))->find($id);
+
+	if( ! is_null($assignment))
+	{
+		return $assignment;
+	}
+
+	else
+	{
+		return json_encode(array('error' => 'Assignment #'.$id.' does not exist.'));
+	}
+});
+
+Route::get('api/question/{id}', function($id)
+{
+	$question = Question::with(array('assignment', 'hints'))->find($id);
+
+	if( ! is_null($question))
+	{
+		return $question;
+	}
+
+	else
+	{
+		return json_encode(array('error' => 'Question #'.$id.' does not exist.'));
+	}
+});
+
+Route::get('api/hint/{id}', function($id)
+{
+	$hint = Hint::with(array('assignment', 'question'))->find($id);
+
+	if( ! is_null($hint))
+	{
+		return $hint;
+	}
+
+	else
+	{
+		return json_encode(array('error' => 'Hint #'.$id.' does not exist.'));
+	}
 });
