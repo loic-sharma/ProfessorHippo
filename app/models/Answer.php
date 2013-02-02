@@ -18,4 +18,14 @@ class Answer extends Eloquent {
 	{
 		return $this->belongsTo('Teacher');
 	}
+
+	public function takeData($data)
+	{
+		return json_encode($data);
+	}
+
+	public function giveData($data)
+	{
+		return json_decode($data);
+	}
 }
