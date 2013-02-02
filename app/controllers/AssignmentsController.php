@@ -94,4 +94,18 @@ class AssignmentsController extends BaseController {
 			return Redirect::to('assignments');
 		}
 	}
+
+	public function getDelete($id)
+	{
+		$assignment = Assignment::where('teacher_id', Auth::user()->id)
+						->where('id', $id)
+						->first();
+
+		if( ! is_null($assignment))
+		{
+			$assignment->delete();
+		}
+
+		return Redirect::to('assignments');
+	}
 }
