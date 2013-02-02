@@ -45,10 +45,10 @@
 
 						@if(Auth::check())
 							<li class="first">
-								<a href="{{ URL::to('assignment') }}">Assignments</a>
+								<a href="{{ URL::to('assignments') }}">Assignments</a>
 							 </li>
 							<li>
-								<a href="{{ URL::to('assignment/create') }}">Create Assignment</a>
+								<a href="{{ URL::to('assignments/create') }}">Create Assignment</a>
 							</li>
 							<li>
 								<a href="{{ URL::to('logout') }}">Logout</a>
