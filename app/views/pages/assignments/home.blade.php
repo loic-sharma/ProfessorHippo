@@ -16,11 +16,11 @@
 		<tbody>
 			@foreach($assignments as $assignment)
 				<tr>
-					<td>{{ $assignment->name }}</td>
+					<td><a href="{{ URL::to('assignments/edit/'.$assignment->id) }}">{{ $assignment->name }}</a></td>
 					<td>{{ $assignment->id }}</td>
 					<td>{{ $assignment->timeAgo }}</td>
 					<td>{{ $assignment->questions->count() }}</td>
-					<td><a href="{{ URL::to('assignments/'.$assignment->id.'/delete') }}" class="btn btn-danger">Delete</a></td>
+					<td><a href="{{ URL::to('assignments/delete/'.$assignment->id) }}" class="btn btn-danger">Delete</a></td>
 				</tr>
 			@endforeach
 		</tbody>
