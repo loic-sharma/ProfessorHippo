@@ -12,5 +12,11 @@
 		</div>
 	</div>
 
-	<input type="submit" value="Create" class="btn">
+	<input type="submit" value="Save" class="btn">
 </form>
+
+@if($assignment->exists)
+	@foreach($assignment->questions as $question)
+		Test
+	@endforeach
+@endif
